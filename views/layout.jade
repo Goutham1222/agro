@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='/css/style.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js')
+  body
+    header
+      h1 Agro+
+      nav
+        ul
+          li: a(href='/') Home
+          li: a(href='/products/add') Add Product
+          li: a(href='/products/list') View Products
+          li: a(href='/shops/nearby') Nearby Shops
+          li: a(href='/scanner') Scanner
+          li: a(href='/about') About
+          li: a(href='/contact') Contact
+          li: a(href='/reviews') Reviews
+          li: a(href='/help') Help
+          if !user
+            li: a(href='/login') Login
+            li: a(href='/register') Register
+          else
+            if user.role=='admin'
+              li: a(href='/reviews/admin') Reviews(Admin)
+            li: a(href='/logout') Logout (#{user.username})
+    block content

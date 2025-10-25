@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h2 Add New Product
+  form(method='POST', enctype='multipart/form-data')
+    label Name:
+    input(type='text', name='name', required)
+    br
+    label Barcode:
+    input(type='text', name='barcode', required)
+    br
+    label Description:
+    textarea(name='description')
+    br
+    label Image:
+    input(type='file', name='image')
+    br
+    button(type='submit') Add Product

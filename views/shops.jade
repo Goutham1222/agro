@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h2 Nearby Shops
+  form(method='POST')
+    label Shop Name:
+    input(type='text', name='name')
+    br
+    label Location:
+    input(type='text', name='location')
+    br
+    label Distance (km):
+    input(type='number', name='distance')
+    br
+    button(type='submit') Add Shop
+  if shops
+    ul
+      each s in shops
+        li #{s.name} - #{s.location} (#{s.distance} km)

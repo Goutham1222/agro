@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2 All Reviews (Admin)
+  if reviews && reviews.length
+    each r in reviews
+      .review
+        h4= r.name + ' - ' + (r.rating||0) + '/5'
+        p= r.comment
+        small= r.createdAt.toString()
+  else
+    p No reviews yet.
