@@ -34,7 +34,18 @@ app.use(session({
   store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/farmer_verification' })
 }));
 
-// make user available in views
+// Make user data available to all views
+app.use((req, res, next) => {
+  if (req.session.user) {
+    res.locals.user = {
+      ...req.session.user,
+      isAdmin: req.session.user.role === 'admin'
+    };
+  } else {
+    res.locals.user = null;
+  }
+  next();
+});
 app.use((req,res,next)=>{
   res.locals.user = req.session.user || null;
   next();

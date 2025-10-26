@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1 QR/Barcode Scanner
+
+  #scanner-container
+    p Loading camera...
+  
+  p#result Result: None
+
+block scripts
+  //- Include html5-qrcode from CDN
+  script(src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js")
+  script.
+    const resultElement = document.getElementById('result');
+    const scannerContainer = document.getElementById('scanner-container');
+
+    function onScanSuccess(decodedText, decodedResult) {
+      // handle the scanned code
+      resultElement.innerText = 'Result: ' + decodedText;
+      html5QrcodeScanner.clear(); // stop scanning after success
+    }
+
+    function onScanError(errorMessage) {
+      // optionally log scan errors
+      console.warn('Scan error', errorMessage);
+    }
+
+    const html5QrcodeScanner = new Html5Qrcode("scanner-container");
+
+    Html5Qrcode.getCameras().then(cameras => {
+      if (cameras && cameras.length) {
+        const cameraId = cameras[0].id;
+        html5QrcodeScanner.start(
+          cameraId, 
+          {
+            fps: 10,    // frames per second
+            qrbox: 250  // scanning box size
+          },
+          onScanSuccess,
+          onScanError
+        );
+      } else {
+        scannerContainer.innerText = "No camera found";
+      }
+    }).catch(err => {
+      console.error(err);
+      scannerContainer.innerText = "Camera access denied";
+    });

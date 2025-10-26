@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Nearby Shops
+  
+  if user && user.role === 'admin'
+    .admin-actions
+      a.add-shop-btn(href='/shops/add') Add New Shop
+      
+    .debug-info
+      p Current User Info:
+      if user
+        pre= JSON.stringify({username: user.username, role: user.role}, null, 2)
+      else
+        p No user logged in
+
+  if shops && shops.length
+    ul.shop-list
+      each s in shops
+        li.shop-item
+          h3= s.name
+          p Distance: #{s.distance} km
+          p
+            a(href=s.location, target="_blank") View Location
+  else
+    p No shops available in your area yet.

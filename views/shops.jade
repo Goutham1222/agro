@@ -1,19 +1,33 @@
 extends layout
 
 block content
-  h2 Nearby Shops
-  form(method='POST')
-    label Shop Name:
-    input(type='text', name='name')
+  h1 Add Shop
+
+  form(action='/shops/add', method='POST')
+    div
+      label(for='name') Shop Name:
+      input(type='text', id='name', name='name', required)
     br
-    label Location:
-    input(type='text', name='location')
+    div
+      label(for='location') Location (Map Link):
+      input(type='text', id='location', name='location', required)
     br
-    label Distance (km):
-    input(type='number', name='distance')
+    div
+      label(for='distance') Distance (km):
+      input(type='number', id='distance', name='distance', required)
     br
     button(type='submit') Add Shop
-  if shops
+
+  hr
+
+  h2 Nearby Shops
+  if shops && shops.length
     ul
       each s in shops
-        li #{s.name} - #{s.location} (#{s.distance} km)
+        li
+          div(style="font-weight:bold") #{s.name}
+          div 
+            a(href=s.location, target="_blank") #{s.location}
+          div #{s.distance} km
+  else
+    p No shops available.

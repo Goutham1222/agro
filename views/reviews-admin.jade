@@ -7,6 +7,6 @@ block content
       .review
         h4= r.name + ' - ' + (r.rating||0) + '/5'
         p= r.comment
-        small= r.createdAt.toString()
+        small= r.createdAt ? r.createdAt.toLocaleString() : ''
   else
     p No reviews yet.

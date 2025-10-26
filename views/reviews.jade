@@ -7,7 +7,7 @@ block content
     input(type='text', name='name')
     br
     label Rating (1-5)
-    input(type='number', name='rating' min='1' max='5')
+    input(type='number', name='rating', min=1, max=5)
     br
     label Comment
     textarea(name='comment')
@@ -19,4 +19,4 @@ block content
       .review
         h4= r.name + ' (' + (r.rating||0) + '/5)'
         p= r.comment
-        small= r.createdAt.toDateString()
+        small= r.createdAt ? r.createdAt.toLocaleString() : ''
