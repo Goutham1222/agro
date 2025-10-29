@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1 Add Shop
+  h1 Add Shop 🏪
 
-  form(action='/shops/add', method='POST')
+  form(action='/shops/add', method='POST', class='shop-form')
     div
       label(for='name') Shop Name:
       input(type='text', id='name', name='name', required)
@@ -13,21 +13,21 @@ block content
       input(type='text', id='location', name='location', required)
     br
     div
-      label(for='distance') Distance (km):
-      input(type='number', id='distance', name='distance', required)
+      label(for='distance') Distance :
+      input(type='text', id='distance', name='distance', required)
     br
     button(type='submit') Add Shop
 
   hr
 
-  h2 Nearby Shops
+  h2 Nearby Shops 🌱
   if shops && shops.length
-    ul
+    .shop-list
       each s in shops
-        li
-          div(style="font-weight:bold") #{s.name}
-          div 
-            a(href=s.location, target="_blank") #{s.location}
-          div #{s.distance} km
+        .shop-box
+          h3= s.name
+          p 
+            a(href=s.location, target="_blank") View on Map
+          p Distance: #{s.distance} km
   else
     p No shops available.

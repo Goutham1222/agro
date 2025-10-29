@@ -1,49 +1,63 @@
 extends layout
 
 block content
-  h1 QR/Barcode Scanner
-
-  #scanner-container
-    p Loading camera...
-  
-  p#result Result: None
+  h1 QR / Barcode Scanner
+  #scanner-container(style="text-align:center; color:white;") Loading camera...
+  select#cameraSelect(style="display:none; margin:10px auto;")
+  p#status(style="text-align:center; color:yellow; margin-top:10px;") Waiting for permission...
+  p#result(style="text-align:center; color:#fff; margin-top:10px;") Result: None
 
 block scripts
-  //- Include html5-qrcode from CDN
   script(src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js")
   script.
-    const resultElement = document.getElementById('result');
-    const scannerContainer = document.getElementById('scanner-container');
+    const resultEl = document.getElementById('result');
+    const statusEl = document.getElementById('status');
+    const cameraSelect = document.getElementById('cameraSelect');
+    const html5QrCode = new Html5Qrcode("scanner-container");
+    let currentCameraId = null;
 
-    function onScanSuccess(decodedText, decodedResult) {
-      // handle the scanned code
-      resultElement.innerText = 'Result: ' + decodedText;
-      html5QrcodeScanner.clear(); // stop scanning after success
+    function startCamera(cameraId) {
+      statusEl.innerText = "🎥 Starting camera...";
+      html5QrCode.start(
+        cameraId,
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        decodedText => {
+          resultEl.innerText = "✅ Result: " + decodedText;
+          html5QrCode.stop();
+        },
+        err => {}
+      ).then(() => {
+        statusEl.innerText = "✅ Camera active.";
+      }).catch(err => {
+        console.error("Camera start error:", err);
+        statusEl.innerText = "❌ " + err.message;
+      });
     }
-
-    function onScanError(errorMessage) {
-      // optionally log scan errors
-      console.warn('Scan error', errorMessage);
-    }
-
-    const html5QrcodeScanner = new Html5Qrcode("scanner-container");
 
     Html5Qrcode.getCameras().then(cameras => {
-      if (cameras && cameras.length) {
-        const cameraId = cameras[0].id;
-        html5QrcodeScanner.start(
-          cameraId, 
-          {
-            fps: 10,    // frames per second
-            qrbox: 250  // scanning box size
-          },
-          onScanSuccess,
-          onScanError
-        );
-      } else {
-        scannerContainer.innerText = "No camera found";
+      console.log("Detected cameras:", cameras);
+      if (!cameras.length) {
+        statusEl.innerText = "❌ No camera found.";
+        return;
       }
+
+      // Show camera selector if more than one
+      if (cameras.length > 1) {
+        cameraSelect.style.display = "block";
+        cameras.forEach(cam => {
+          const option = document.createElement('option');
+          option.value = cam.id;
+          option.text = cam.label || `Camera ${cameraSelect.length + 1}`;
+          cameraSelect.appendChild(option);
+        });
+        cameraSelect.onchange = e => {
+          html5QrCode.stop().then(() => startCamera(e.target.value));
+        };
+      }
+
+      currentCameraId = cameras[0].id;
+      startCamera(currentCameraId);
     }).catch(err => {
-      console.error(err);
-      scannerContainer.innerText = "Camera access denied";
+      console.error("getCameras error:", err);
+      statusEl.innerText = "⚠️ Cannot access camera: " + err.message;
     });

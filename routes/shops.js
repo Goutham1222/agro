@@ -15,7 +15,8 @@ router.get('/add', ensureAdmin, (req, res) => {
  * @route   POST /shops/add
  * @desc    Add a new shop to the database (Admin only)
  */
-router.post('/add', ensureAdmin, async (req, res) => {
+router.post('/add', //ensureAdmin,
+ async (req, res) => {
   try {
     const { name, location, distance } = req.body;
     await Shop.create({ name, location, distance });
@@ -34,13 +35,13 @@ router.get('/nearby', async (req, res) => {
   try {
     const shops = await Shop.find().sort({ distance: 1 });
     // Debug user info
-    console.log('Session user:', req.session.user);
-    console.log('Locals user:', res.locals.user);
+   // console.log('Session user:', req.session.user);
+   // console.log('Locals user:', res.locals.user);
     
-    res.render('nearby-shops', { 
-      title: 'Nearby Shops', 
-      shops,
-      user: req.session.user // explicitly pass user data
+   res.render('nearby-shops', { 
+     title: 'Nearby Shops', 
+     shops,
+     // user: req.session.user // explicitly pass user data
     });
   } catch (error) {
     console.error('Error fetching nearby shops:', error);

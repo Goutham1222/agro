@@ -164,24 +164,43 @@ nav a:hover::after {
 
 /* 🌻 Hero Section */
 .hero {
-  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.25)),
-              url('/images/farm-modern.jpg') center/cover no-repeat;
-  color: #fff;
+  height: 100vh; /* Full screen height */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* Center vertically */
+  align-items: center;      /* Center horizontally */
   text-align: center;
-  padding: 60px 15px;
-  border-radius: 30px 30px 0 0;
+
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.35)),
+              url('/images/farm-modern.jpg');
+  background-size: cover;       /* Image covers full screen */
+  background-position: center;  /* Center image */
+  background-repeat: no-repeat; /* No tiling */
+  background-attachment: fixed; /* Keeps background fixed when scrolling */
+
+  color: #fff;
+  border-radius: 0 0 30px 30px;
+  padding: 20px;
   animation: fadeIn 1.2s ease;
 }
 
 .hero h2 {
-  font-size: 2rem;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1rem;
-  margin-top: 8px;
-  opacity: 0.9;
+  font-size: 1.2rem;
+  opacity: 0.95;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 🌼 Section Cards */
@@ -350,4 +369,485 @@ footer::before {
   .hero { padding: 50px 15px; }
   header { font-size:1.4rem; padding:12px 10px; }
   button { font-size:0.8rem; padding:7px 15px; }
+}
+
+/* 🌿 Login Page */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ background: 
+              url('/images/farm-modern1.jpg') center/cover no-repeat fixed;
+}
+
+.login-box {
+  background: var(--card-bg);
+  padding: 35px 40px;
+  border-radius: 15px;
+  border: 1px solid rgba(76,175,80,0.3);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  width: 320px;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+.login-box h2 {
+  color: var(--dark);
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  margin: 8px 0 5px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(76,175,80,0.3);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.login-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 6px rgba(76,175,80,0.3);
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+}
+/* 🌿 Register Page Background (Gradient + Image) */
+.register-page {
+  background: linear-gradient(135deg, rgba(233, 255, 235, 0.85), rgba(210, 245, 210, 0.85)),
+              url('/images/register-bg1.jpg') center/cover no-repeat fixed;
+  background-blend-mode: overlay;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about-page {
+  background: 
+              url('/images/about.png') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 60px;
+}
+
+.about-page h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.about-page p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+.contact-page {
+  background: 
+              url('/images/contact.png') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 60px;
+}
+
+.contact-page h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.contact-page p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+/* 🌾 Full background for the page */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+              url('/images/farm-modern.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+/* 🌟 Centered and boxed review section */
+.review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  min-height: 100vh;
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.55); /* dark transparent background */
+  border: 3px solid #ffffffaa;     /* semi-transparent white border */
+  border-radius: 20px;
+  padding: 40px 50px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 1s ease;
+}
+
+/* Title */
+.review-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+
+/* Form */
+.review-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.review-container input,
+.review-container textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+}
+
+.review-container textarea {
+  resize: none;
+  height: 80px;
+}
+
+.review-container button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-container button:hover {
+  background-color: #218838;
+}
+
+/* Individual Reviews */
+.review {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #ffffff44;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.review h4 {
+  margin: 0;
+  color: #fff;
+}
+
+.review p {
+  margin: 8px 0;
+  color: #f1f1f1;
+}
+
+.review small {
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 🌾 Product Grid Layout */
+.product-container {
+  display: flex;
+  flex-wrap: wrap;             /* ✅ enables next-row wrapping */
+  justify-content: center;     /* centers all boxes */
+  align-items: flex-start;
+  gap: 25px;                   /* space between boxes */
+  padding: 40px;
+  min-height: 80vh;
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+              url('/images/farm-modern.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* 🧺 Product Card Box */
+.product-box {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid #4CAF50;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+  padding: 20px;
+  width: 270px;                /* fixed width for equal boxes */
+  text-align: center;
+  color: #fff;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 🪴 Hover animation */
+.product-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* 🖼️ Product Images */
+.product-box img {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+/* 🏷️ Product Name */
+.product-box h3 {
+  font-size: 1.3rem;
+  margin: 10px 0;
+  color: #eaffea;
+}
+
+/* 💰 Price highlight */
+.product-box p:first-of-type {
+  font-weight: bold;
+  color: #b8ffb8;
+}
+
+/* 🧾 Description */
+.product-box p {
+  font-size: 1rem;
+
+  opacity: 0.9;
+  margin: 5px 0;
+}
+
+/* 🌿 Title Styling */
+h2 {
+  text-align: center;
+  margin-top: 30px;
+  color: #f5f1f1;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  font-size: 2rem;
+}
+#scanner-container {
+  width: 400px;
+  height: 350px;
+  margin: 20px auto;
+  border: 3px solid #4CAF50;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  #scanner-container {
+    width: 90%;
+    height: 300px;
+  }
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+}
+/* 🌾 Add Shop Page Styling */
+.shop-form {
+  background: #f5fff5;
+  border: 2px solid #4CAF50;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shop-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.shop-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.shop-form button {
+  background: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.shop-form button:hover {
+  background: #45a049;
+}
+
+/* 🌱 Shop List Styling */
+.shop-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.shop-box {
+  border: 2px solid #4CAF50;
+  background: #f7fff7;
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.shop-box:hover {
+  transform: scale(1.05);
+  background: #eaffea;
+}
+
+.shop-box a {
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+.shop-box a:hover {
+  text-decoration: underline;
+}
+.shop-item p:nth-of-type(1) {
+  color: #1b8c1b; /* soft green */
+  font-weight: 600;
+}
+/* 🌱 Help Page Styles */
+.help-page {
+  max-width: 800px;
+  margin: 50px auto;
+  background: #f8fff8;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 100, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.help-title {
+  text-align: center;
+  color: #1b5e20;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.help-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  color: #2e7d32;
+  font-size: 1.3rem;
+  margin-top: 25px;
+  border-left: 5px solid #66bb6a;
+  padding-left: 10px;
+}
+
+.help-list {
+  list-style: none;
+  margin: 10px 0 20px 0;
+  padding: 0;
+}
+
+.help-list li {
+  background: #e8f5e9;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border-left: 5px solid #43a047;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+
+.help-list li:hover {
+  transform: scale(1.02);
+  background: #dcedc8;
+}
+
+.contact-box {
+  background: #a5d6a7;
+  padding: 15px;
+  border-radius: 10px;
+  color: #1b5e20;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.contact-box p {
+  margin: 5px 0;
 }

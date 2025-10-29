@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
   name: String,
-  barcode: String,
   description: String,
+  price: Number,
+  barcode: String,
+  manufactureDate: Date,
+  expiryDate: Date,
   image: String
 });
 

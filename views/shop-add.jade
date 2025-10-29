@@ -1,19 +1,20 @@
 extends layout
 
 block content
-  h1 Add Shop
-
-  form(action='/shops/add', method='POST')
-    div
-      label(for='name') Shop Name:
-      input(type='text', id='name', name='name', required)
-    br
-    div
-      label(for='location') Location (Map Link):
-      input(type='text', id='location', name='location', required)
-    br
-    div
-      label(for='distance') Distance (km):
-      input(type='number', id='distance', name='distance', step="0.1", required)
-    br
-    button(type='submit') Add Shop
+  .login-page
+    .login-box
+      h2 Add Shop
+      form(action='/shops/add', method='POST')
+        div
+          label(for='name') Shop Name:
+          input(type='text', id='name', name='name', required)
+        br
+        div
+          label(for='location') Location (Map Link):
+          input(type='text', id='location', name='location', required)
+        br
+        div
+          label(for='distance') Distance :
+          input(type='text', id='distance', name='distance', required)
+        br
+        button(type='submit') Add Shop

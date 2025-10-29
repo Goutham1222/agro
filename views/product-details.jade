@@ -1,13 +1,18 @@
 extends layout
 
 block content
-  h2 Product Details
-  if products.length
-    each p in products
-      .product
-        h3= p.name
-        img(src=p.image, alt=p.name, width='150')
-        p Barcode: #{p.barcode}
-        p Description: #{p.description}
-  else
-    p No products found.
+  h2 Product Details 🧺
+  .product-container
+    if products.length
+      each p in products
+        .product-box
+          h3= p.name
+          if p.image
+            img(src=p.image, alt=p.name)
+          p Barcode: #{p.barcode || 'N/A'}
+          p Manufacture Date: #{p.manufactureDate ? p.manufactureDate.toDateString() : 'N/A'}
+          p Expiry Date: #{p.expiryDate ? p.expiryDate.toDateString() : 'N/A'}
+          p Description: #{p.description || 'No description'}
+          p Price: ₹#{p.price || 'N/A'}
+    else
+      p No products found.

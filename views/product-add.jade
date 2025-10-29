@@ -1,18 +1,38 @@
 extends layout
 
 block content
-  h2 Add New Product
-  form(method='POST', enctype='multipart/form-data')
-    label Name:
-    input(type='text', name='name', required)
-    br
-    label Barcode:
-    input(type='text', name='barcode', required)
-    br
-    label Description:
-    textarea(name='description')
-    br
-    label Image:
-    input(type='file', name='image')
-    br
-    button(type='submit') Add Product
+  .login-page
+    .login-box
+      h2 Add Product 🧺
+
+      form(action="/products/add", method="POST", enctype="multipart/form-data")
+        
+        label(for="name") Product Name:
+        input(type="text", id="name", name="name", placeholder="Enter product name", required)
+        br
+
+        label(for="manufactureDate") Manufacture Date:
+        input(type="date", id="manufactureDate", name="manufactureDate", required)
+        br
+
+        label(for="expiryDate") Expiry Date:
+        input(type="date", id="expiryDate", name="expiryDate", required)
+        br
+
+        label(for="barcode") Barcode:
+        input(type="text", id="barcode", name="barcode", placeholder="Enter product barcode", required)
+        br
+
+        label(for="description") Description:
+        textarea(id="description", name="description", rows="4", placeholder="Enter product description", required)
+        br
+
+        label(for="price") Price:
+        input(type="number", id="price", name="price", placeholder="Enter product price", min="0", step="0.01", required)
+        br
+
+        label(for="image") Upload Image:
+        input(type="file", id="image", name="image", accept="image/*", required)
+        br
+
+        button(type="submit") Add Product

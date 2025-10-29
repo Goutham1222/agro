@@ -1,22 +1,23 @@
 extends layout
 
 block content
-  h2 Reviews
-  form(method='POST', action='/reviews/add')
-    label Name
-    input(type='text', name='name')
-    br
-    label Rating (1-5)
-    input(type='number', name='rating', min=1, max=5)
-    br
-    label Comment
-    textarea(name='comment')
-    br
-    button(type='submit') Submit Review
+  .review-container
+    h2 Reviews
+    form(method='POST', action='/reviews/add')
+      label Name
+      input(type='text', name='name')
+      br
+      label Rating (1-5)
+      input(type='number', name='rating', min=1, max=5)
+      br
+      label Comment
+      textarea(name='comment')
+      br
+      button(type='submit') Submit Review
 
-  if reviews && reviews.length
-    each r in reviews
-      .review
-        h4= r.name + ' (' + (r.rating||0) + '/5)'
-        p= r.comment
-        small= r.createdAt ? r.createdAt.toLocaleString() : ''
+    if reviews && reviews.length
+      each r in reviews
+        .review
+          h4= r.name + ' (' + (r.rating||0) + '/5)'
+          p= r.comment
+          small= r.createdAt ? r.createdAt.toLocaleString() : ''
