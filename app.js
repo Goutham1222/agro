@@ -18,14 +18,16 @@ const User = require('./models/user');
 const app = express();
 
 /* ==============================
-   🔗 MongoDB Connection
+   🔗 MongoDB Atlas Connection
 ============================== */
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/farmer_verification', {
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://admin:admin123@cluster0.eyl8a8f.mongodb.net/agroplus?retryWrites=true&w=majority&appName=Cluster0';
+
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-  .then(() => console.log('✅ MongoDB Connected'))
-  .catch(err => console.error('❌ DB Error:', err));
+  .then(() => console.log('✅ MongoDB Atlas Connected Successfully'))
+  .catch(err => console.error('❌ DB Connection Error:', err));
 
 /* ==============================
    🧠 View Engine Setup
@@ -49,7 +51,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/farmer_verification'
+    mongoUrl: mongoURI
   }),
 }));
 
